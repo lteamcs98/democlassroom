@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="generator" content="pandoc" />
+  <title>Merge Sort Demo Lecture</title>
+  <style type="text/css">
+/*<![CDATA[*/
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode, table.sourceCode pre 
+   { margin: 0; padding: 0; border: 0; vertical-align: baseline; border: none; }
+td.lineNumbers { border-right: 1px solid #AAAAAA; text-align: right; color: #AAAAAA; padding-right: 5px; padding-left: 5px; }
+td.sourceCode { padding-left: 5px; }
+code.sourceCode span.kw { color: #007020; font-weight: bold; } 
+code.sourceCode span.dt { color: #902000; }
+code.sourceCode span.dv { color: #40a070; }
+code.sourceCode span.bn { color: #40a070; }
+code.sourceCode span.fl { color: #40a070; }
+code.sourceCode span.ch { color: #4070a0; }
+code.sourceCode span.st { color: #4070a0; }
+code.sourceCode span.co { color: #60a0b0; font-style: italic; }
+code.sourceCode span.ot { color: #007020; }
+code.sourceCode span.al { color: red; font-weight: bold; }
+code.sourceCode span.fu { color: #06287e; }
+code.sourceCode span.re { }
+code.sourceCode span.er { color: red; font-weight: bold; }
+/*]]>*/
+  </style>
+</head>
+<body>
+<script type="text/javascript"
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+
+<link rel="stylesheet" href="http://www.cs.dartmouth.edu/~cs1/azul.css" type="text/css" />
+
+
+<div id = "menubar">
+<ul>
+<li><a href="http://www.cs.dartmouth.edu/~cs1/syllabus.html">Syllabus</a>
+<li><a href="http://www.cs.dartmouth.edu/~cs1/schedule.html">Schedule</a>
+<li><a href="http://www.cs.dartmouth.edu/~cs1/shortassign/short_assignments.html">Short assignments</a>
+<li><a href="http://www.cs.dartmouth.edu/~cs1/labs/lab_assignments.html">Labs</a>
+<li><a href="http://www.cs.dartmouth.edu/~cs1/exams.html">Exams</a>
+<li><a href="http://www.cs.dartmouth.edu/~cs1/software.html">Course software</a>
+<li> <a href="http://greenteapress.com/thinkpython/thinkpython.html">Book</a>
+<li><A HREF="&#109;&#97;&#105;&#108;&#116;&#111;&#58;%63%73%31%68%65%6C%70%40%63%73%2E%64%61%72%74%6D%6F%75%74%68%2E%65%64%75">Get help</A>
+</ul>
+</div>
+
+<div id = "termtitle"> CS 1:  Winter 2012 </div> 
+<h1 id="merge-sort">Merge sort</h1>
+<p>Merge sort is arguably the first useful sorting algorithm you learn in computer science. Merge sort has a complexity of O(n log n), making it one of the more efficient sorting algorithms available. Additionally, merge sort is a stable sort (just like insertion sort) so that the relative order of equivalent items remains the same before and after the sort. These advantages are why Firefox and Safari  use merge sort for their implementation of <code>Array.prototype.sort()</code>.</p>
+<p>The algorithm for merge sort is based on the idea that it&#8217;s easier to merge two already sorted lists than it is to deal with a single unsorted list. To that end, merge sort starts by creating n number of one item lists where n is the total number of items in the original list to sort. Then, the algorithm proceeds to combine these one item lists back into a single sorted list.</p>
+<p>The merging of two lists that are already sorted is a pretty straightforward algorithm. Assume you have two lists, list A and list B. You start from the front of each list and compare the two values. Whichever value is smaller is inserted into the results array. So suppose the smaller value is from list A; that value is placed into the results array. Next, the second value from list A is compared to the first value in list B. Once again, the smaller of the two values is placed into the results list. So if the smaller value is now from list B, then the next step is to compare the second item from list A to the second item in list B.</p>
+
+<p>This function merges two arrays, <code>left</code> and <code>right</code>. The <code>il</code> variable keeps track of the index to compare for <code>left</code> while <code>ir</code> does the same for <code>right</code>. Each time a value from one array is added, its corresponding index variable is incremented. As soon as one of the arrays has been exhausted, then the remaining values are added to the end of the result array using <code>concat()</code>.</p>
+<p>The <code>merge()</code> function is pretty simple but now you need two sorted lists to combine. As mentioned before, this is done by splitting an array into numerous one-item lists and then combining those lists systematically. This is easily done using a recursive algorithm.</p>
+
+<p>The first thing to note is the terminal case of an array that contains zero or one items. These arrays don&#8217;t need to be sorted and can be returned as is. For arrays with two or more values, the array is first split in half creating <code>left</code> and <code>right</code> arrays. Each of these arrays is then passed back into <code>mergesort()</code> with the results passed into <code>merge()</code>. So the algorithm is first sorting the left half of the array, then sorting the right half of the array, then merging the results. Through this recursion, eventually you&#8217;ll get to a point where two single-value arrays are merged.</p>
+<p>Following these instructions, please complete the coding challenge below:</p>
+<iframe src="http://interactiveclassroom.herokuapp.com/challenge/8" width="100%" height="1000" scrolling="yes" style="overflow: scroll;"></iframe>
+</body>
+<p>Lecture Notes borrowed from: <a href="http://www.nczonline.net/blog/2012/10/02/computer-science-and-javascript-merge-sort/">NCZ Online</a></p>
+</html>

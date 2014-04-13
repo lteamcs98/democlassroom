@@ -1,4 +1,4 @@
-// web.js
+// app.js
 var express = require("express");
 var logfmt = require("logfmt");
 var app = express();
@@ -6,7 +6,7 @@ var app = express();
 app.use(logfmt.requestLogger());
 
 app.get('/', function(req, res) {
-  res.send('Hello World!');
+	res.sendfile('index.html');
 });
 
 var port = Number(process.env.PORT || 5000);
